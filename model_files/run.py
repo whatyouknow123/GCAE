@@ -242,9 +242,11 @@ for t in range(n_trials):
 print(accuracy_trials)
 accuracy_trials = np.array(accuracy_trials)
 means = accuracy_trials.mean(0)
-stds = accuracy_trials.std(0)
-print('{:.2f}    {:.2f}'.format(means[0], stds[0]))
-print('{:.2f}    {:.2f}'.format(means[1], stds[1]))
+#stds = accuracy_trials.std(0)
+#print('{:.2f}    {:.2f}'.format(means[0], stds[0]))
+#print('{:.2f}    {:.2f}'.format(means[1], stds[1]))
+print('{:.2f}'.format(means[0]))
+print('{:.2f}'.format(means[1]))
 
 with open('time_stamps', 'w') as fopen:
     for trials in time_stamps_trials:

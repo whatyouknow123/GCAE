@@ -2,7 +2,7 @@ from copy import copy
 import argparse
 from collections import defaultdict, Counter
 from lxml import etree
-from nltk.tokenize.moses import MosesTokenizer
+from sacremoses import MosesTokenizer
 import simplejson as json
 import codecs
 import random
