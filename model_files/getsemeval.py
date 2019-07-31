@@ -146,7 +146,7 @@ def read_sentence14_target(file_path, max_offset_len=83):
                 for i in range(len(tokens)):
                     if i < left_word_offset:
                         token_index[i] = 1 - (left_word_offset - token_index[i]) / token_length
-                    elif i >= right_word_offset:
+                    elif i >= (len(tokens) - right_word_offset):
                         token_index[i] = 1 - (token_index[i] - (len(tokens) - right_word_offset) + 1) / token_length
                     else:
                         token_index[i] = 0
@@ -200,7 +200,7 @@ def read_sentence1516_target(file_path,  max_offset_len=83):
                     for i in range(len(tokens)):
                         if i < left_word_offset:
                             token_index[i] = 1 - (left_word_offset - token_index[i]) / token_length
-                        elif i >= len(tokens) - right_word_offset:
+                        elif i >= (len(tokens) - right_word_offset):
                             token_index[i] = 1 - (token_index[i] - (len(tokens) - right_word_offset) + 1) / token_length
                         else:
                             token_index[i] = 0
@@ -280,7 +280,7 @@ def get_semeval(years, aspects, rest_lap='r', use_attribute=False, dedup=False):
         semeval14_test = []
 
     semeval_test = []
-    sentences = []
+    sentences_test = []
     test_total = []
     if 14 in years:
         test_total += semeval14_test
@@ -294,9 +294,9 @@ def get_semeval(years, aspects, rest_lap='r', use_attribute=False, dedup=False):
         for e in test_total:
             s = e['sentence'].strip()
             e['sentence'] = s
-            if s not in sentences:
+            if s not in sentences_test:
                 semeval_test.append(e)
-                sentences.append(s)
+                sentences_test.append(s)
             else:
                 dup += 1
     else:
@@ -352,7 +352,7 @@ def get_semeval_target(years, rest_lap='rest', dedup=False):
     print("# SemEval 14 Test: {0}".format(len(semeval14_test)))
 
     semeval_test = []
-    sentences = []
+    sentences_test = []
     test_total = []
     if 14 in years:
         test_total += semeval14_test
@@ -364,9 +364,9 @@ def get_semeval_target(years, rest_lap='rest', dedup=False):
         for e in test_total:
             s = e['sentence'].strip()
             e['sentence'] = s
-            if dedup and s not in sentences:
+            if dedup and s not in sentences_test:
                 semeval_test.append(e)
-                sentences.append(s)
+                sentences_test.append(s)
     else:
         semeval_test = test_total
     print("# Test: {0}".format(len(semeval_test)))
